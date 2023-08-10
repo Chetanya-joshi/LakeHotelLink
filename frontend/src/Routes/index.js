@@ -19,13 +19,15 @@ import Food from "../components/Food";
 import Mahalya from "../components/Mahalya";
 import DurgaPooja from "../components/durgapooja";
 import VaayuCafe from "../components/VaayuCafe";
-import AuthenticationPage from "../components/AuthenticationPage";
+import SignIn from "../components/Signin";
 import BookingForm from "../components/BookingForm";
+import Signup from "../components/SignUp";
 
 const AppRoute = () => {
   return (
     <>
       <Routes>
+        
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<Aboutindex />} />
         <Route path="/contactus" element={<Contactindex />} />
@@ -42,8 +44,10 @@ const AppRoute = () => {
         <Route path="/mahalya" element={<Mahalya />} />
         <Route path="/durgapooja" element={<DurgaPooja />} />
         <Route path="/vaayucafe" element={<VaayuCafe />} />
-        <Route path="/authentication" element={<AuthenticationPage />} />
+        <Route path="/signin" element={<SignIn />} />
         <Route path="/bookingform" element={<BookingForm />} />
+        <Route path="/signuppage" element={<Signup />} />
+        
       </Routes>
     </>
   );

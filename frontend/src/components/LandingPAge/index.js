@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import { useNavigate } from 'react-router-dom'
 import Header from './Header'
 import Section1 from './Section1'
 import Section2 from './Section2'
@@ -9,6 +10,16 @@ import Offer from './WhatWeOffer'
 import Footer from './Footer'
 
 const Home = () => {
+
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    const token = localStorage.getItem('TOKEN')
+    if(!token){
+      navigate('/signin');
+    }
+  })
+
   return (
     <>
       <Header />

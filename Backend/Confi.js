@@ -6,3 +6,4 @@ module.exports= mongoose.connect(db)
 }).catch((err)=>{
     console.log("something happens wrong so no connection")
 })
+    

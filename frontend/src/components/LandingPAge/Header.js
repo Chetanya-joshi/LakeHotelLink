@@ -7,18 +7,28 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import {Link} from "react-router-dom";
+import {Link , useNavigate} from "react-router-dom";
 import header from '../../../src/PNG_LH.png';
 import './offer.css';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const handleScroll = () => {
       const isTop = window.scrollY < 100;
       setIsScrolled(!isTop);
+
+
+      const token = localStorage.getItem('TOKEN')
+      if(!token){
+        navigate('/signin');
+      }
     };
+
+    
+
+    
 
     window.addEventListener('scroll', handleScroll);
 
@@ -166,26 +176,43 @@ const Header = () => {
                     }}
                   >
                     <Link
-                      to="/authentication"
+                      to="/signin"
                       style={{ textDecoration: "none", color: "#fff",width:"150px" }}
                     >
                       Sign In
                     </Link>
                   </NavDropdown.Item>
 
-                  {/* <Button
+
+                  <NavDropdown.Item
                     className="navBtn"
                     style={{
-                      width: "10rem",
+                      // width: "10rem",
                       borderRadius: "50px",
-                      backgroundColor: "teal",
-                      color: "white",
+                      backgroundColor: "transparent",
+                      color: "black",
+                      padding: "10px",
+                      marginLeft:'10px'
+                    }}
+
+                    onClick={()=>{
+                        localStorage.clear()
+                        navigate('/signin')
                     }}
                   >
-                    Contact Us
-                  </Button> */}
+                   
+                      LOG OUT
+                    
+                  </NavDropdown.Item>
+
+
+                 
+                  
                 </Form>
+                <span className="mx-3 bg-primary text-white w-auto p-2 rounded-5">{localStorage.getItem('NAME')?.substring(0, 2).toUpperCase()}</span>
+                
               </Offcanvas.Body>
+              
             </Navbar.Offcanvas>
           </Container>
         </Navbar>

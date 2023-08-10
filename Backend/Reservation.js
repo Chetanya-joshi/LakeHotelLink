@@ -5,7 +5,7 @@ const info1 = new mongoose.Schema({
     checkin:String,
 
         checkout:
-            String , 
+            String, 
         guest:String,
         yourmessage:String,
 

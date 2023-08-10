@@ -10,11 +10,6 @@ const BookingForm = () => {
   const [text, settext] = useState("")
 
 
-
-
-    
-
-
   const handleChange = async() => {
   
     
