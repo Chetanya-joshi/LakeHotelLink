@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import Header from "./LandingPAge/Header";
 
 const BookingForm = () => {
   const [name,setname] = useState("")
@@ -35,6 +36,8 @@ const BookingForm = () => {
   };
 
   return (
+    <>
+    <Header />
     <Container className="py-5" style={{ maxWidth: "400px", margin: "auto" }}>
       <h2>Book a Hotel Room</h2>
       <Form onSubmit={handleSubmit}>
@@ -121,6 +124,7 @@ const BookingForm = () => {
         </Button>
       </Form>
     </Container>
+    </>
   );
 };
 

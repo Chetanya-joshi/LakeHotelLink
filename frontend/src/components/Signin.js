@@ -1,48 +1,45 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useNavigate,Link } from "react-router-dom";
-import axios from 'axios';
 
 const SignIn = () => {
   const history = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     
 
-    axios.post('http://localhost:5000/signin' , {
-      
-      email : email,
-      password : password
-    })
-    .then(res =>{
-      console.log(res.data)
+    try {
+      const response = await fetch("http://localhost:5000/signin", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }, 
+        body: JSON.stringify({ email, password }),
+      });
 
-      if(res.data.code === 500){
+      const data = await response.json();
+
+      if (response.status === 200) {
+        console.log(data);
+        alert('Sign In Successful');
+
+        localStorage.setItem('TOKEN', data.token);
+        localStorage.setItem('NAME', data.name);
+        localStorage.setItem('USERID', data.userId);
+
+        history('/');
+      } else if (response.status === 404) {
+        alert('Password is wrong');
+      } else if (response.status === 500) {
         alert('User Not Found');
       }
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+    }
 
-      
-      if(res.data.code === 404){
-        alert('Password is wrong');
-      }
-
-      
-      if(res.data.code === 200){
-        // Move to Home Page
-        history('/')
-        localStorage.setItem('TOKEN' , res.data.token)
-        localStorage.setItem('NAME' , res.data.name)
-        localStorage.setItem('USERID' , res.data.userId)
-
-      }
-
-    }).catch(err =>{
-      console.log(err)
-    })
-  
     
     
   }

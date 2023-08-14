@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import axios from 'axios';
+
 import {Link , useNavigate} from 'react-router-dom';
 
 export default function Signup() {
@@ -27,17 +27,28 @@ export default function Signup() {
     //   alert("Sign Up Successful");
     // }
 
-    axios.post('http://localhost:5000/signup' , {
-      name : name,
-      email : email,
-      password : password
-    })
-    .then(res =>{
-      console.log(res.data)
-      history('/signin');
-    }).catch(err =>{
-      console.log(err)
-    })
+    // Assuming you have the 'history' object available
+// And the variables name, email, and password are defined
+
+try {
+      const response = await fetch("http://localhost:5000/signup", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await response.json();
+      if (response.status === 200) {
+        alert('Sign Up Successful');
+        history('/signin')
+      } else if (response.status === 500) {
+        alert('Email already exists');
+      }
+    } catch (error) {
+      console.error("Error during sign-up:", error);
+    }
   
     };
     const mystyle = {
