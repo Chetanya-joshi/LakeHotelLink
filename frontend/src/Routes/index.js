@@ -22,6 +22,7 @@ import VaayuCafe from "../components/VaayuCafe";
 import SignIn from "../components/Signin";
 import BookingForm from "../components/BookingForm";
 import Signup from "../components/SignUp";
+import YouBooking from "../components/YouBooking";
 
 const AppRoute = () => {
   return (
@@ -47,6 +48,7 @@ const AppRoute = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/bookingform" element={<BookingForm />} />
         <Route path="/signuppage" element={<Signup />} />
+        <Route path="/ourbookings" element={<YouBooking />} />
         
       </Routes>
     </>

@@ -35,6 +35,7 @@ const SignIn = () => {
         history('/')
         localStorage.setItem('TOKEN' , res.data.token)
         localStorage.setItem('NAME' , res.data.name)
+        localStorage.setItem('USERID' , res.data.userId)
 
       }
 

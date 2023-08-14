@@ -5,19 +5,19 @@ import Footer from "./LandingPAge/Footer";
 
 const VaayuCafe = () => {
   const images = [
-    // { src: "vayu7.avif", alt: "Image 3" },
+    { src: "vayu7.avif", alt: "Image 3" },
 
-    // { src: "vayu2.jpeg", alt: "Image 2" },
-    // { src: "vayu3.jpg", alt: "Image 3" },
-    // //   { src: "vayu1.jpeg", alt: "Image 1" },
-    // { src: "vayu8.webp", alt: "Image 1" },
+    { src: "vayu2.jpeg", alt: "Image 2" },
+    { src: "vayu3.jpg", alt: "Image 3" },
+      { src: "vayu1.jpeg", alt: "Image 1" },
+    { src: "vayu8.webp", alt: "Image 1" },
 
-    // { src: "vayu4.jpg", alt: "Image 3" },
-    // { src: "vayu5.jpg", alt: "Image 3" },
-    // //   { src: "vayu6.jpg", alt: "Image 3" },
-    // { src: "vayu9.webp", alt: "Image 1" },
+    { src: "vayu4.jpg", alt: "Image 3" },
+    { src: "vayu5.jpg", alt: "Image 3" },
+      { src: "vayu6.jpg", alt: "Image 3" },
+    { src: "vayu9.webp", alt: "Image 1" },
     { src: "vayu1.jpg", alt: "Image 1" },
-    // { src: "vayu2.jpg", alt: "Image 1" },
+    { src: "vayu2.jpg", alt: "Image 1" },
     { src: "vayu3.jpg", alt: "Image 1" },
    
 
@@ -53,12 +53,12 @@ const VaayuCafe = () => {
         >
           {images.map((image, index) => (
             <Col key={index}>
-              <div className="row gallery-item " >
+              <div className="row gallery-item d-flex justify-content-center">
                 <img
                   src={image.src}
                   alt={image.alt}
                   className="img-fluid rounded"
-                  style={{ height: "400px", width: "400px" ,objectFit:"fit"}} // Set a fixed height for the images
+                  style={{ height: "350px", width: "400px" ,objectFit:"fit"}} // Set a fixed height for the images
                 />
               </div>
             </Col>

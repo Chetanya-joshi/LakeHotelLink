@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link , useNavigate} from 'react-router-dom';
 
 export default function Signup() {
+  const history = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -33,6 +34,7 @@ export default function Signup() {
     })
     .then(res =>{
       console.log(res.data)
+      history('/signin');
     }).catch(err =>{
       console.log(err)
     })
@@ -79,6 +81,7 @@ export default function Signup() {
                         placeholder="Enter Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        required
                       />
                     </Form.Group>
 
@@ -89,6 +92,7 @@ export default function Signup() {
                         placeholder="Enter email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        required
                       />
                     </Form.Group>
                     <Form.Group controlId="password" className="py-2">
@@ -98,6 +102,7 @@ export default function Signup() {
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
                       />
                     </Form.Group>
                     <Button

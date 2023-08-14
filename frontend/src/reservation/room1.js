@@ -4,6 +4,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+import './room1.css';
 
 
 import data from "./rooms.json"
@@ -80,11 +81,11 @@ const Room1 = () => {
 
 
                 <Container className="d-flex flex-column justify-content-start align-items-center mt-5 mb-5 text-center " key={data.index}>
-                  <Image src={data.imageSrc} width={1000} height={500} className='rounded'></Image>
+                  <Image src={data.imageSrc} width={1000} height={500} className={`rounded ${window.innerWidth <= 700 ? 'img-fluid' : ''}`}></Image>
                 
                   <Card.Body className="mt-5" >
                       <Card.Title className="mb-3">Room Specification</Card.Title>
-                      <Card.Text style={{width:'1000px'}}>
+                      <Card.Text style={{width:'1000px'}} className="w-100">
                         This 13x12sq feet room is designed with wooden floorings. The decor includes a double bed or twin beds and a desk along with a couple of chairs. A mini-bar, Internet access (complimentary), coffee/tea maker, a telephone with direct dial access, a cable TV, and an in-room safe are available in this room.
                         
                       </Card.Text>
@@ -136,7 +137,9 @@ const Room1 = () => {
                     </Col>
 
                     <Col md-4>
+                      
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.76577774632!2d88.36443127497452!3d22.512969379534216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027777f653aee3%3A0x3647fb0b388d2c28!2sThe%20Lake%20Hotel!5e0!3m2!1sen!2sin!4v1689400042161!5m2!1sen!2sin" width="600" height="450" style={{"border":"0"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    
                     </Col>
                   </Row>
 

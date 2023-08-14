@@ -10,6 +10,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import {Link , useNavigate} from "react-router-dom";
 import header from '../../../src/PNG_LH.png';
 import './offer.css';
+import './Header.css';
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -18,15 +19,13 @@ const Header = () => {
     const handleScroll = () => {
       const isTop = window.scrollY < 100;
       setIsScrolled(!isTop);
+  
+    };
 
-
-      const token = localStorage.getItem('TOKEN')
+    const token = localStorage.getItem('TOKEN')
       if(!token){
         navigate('/signin');
       }
-    };
-
-    
 
     
 
@@ -36,6 +35,13 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
 
   return (
     <>
@@ -184,32 +190,56 @@ const Header = () => {
                   </NavDropdown.Item>
 
 
-                  <NavDropdown.Item
-                    className="navBtn"
-                    style={{
-                      // width: "10rem",
-                      borderRadius: "50px",
-                      backgroundColor: "transparent",
-                      color: "black",
-                      padding: "10px",
-                      marginLeft:'10px'
-                    }}
-
-                    onClick={()=>{
-                        localStorage.clear()
-                        navigate('/signin')
-                    }}
-                  >
-                   
-                      LOG OUT
-                    
-                  </NavDropdown.Item>
+                  
 
 
                  
                   
                 </Form>
-                <span className="mx-3 bg-primary text-white w-auto p-2 rounded-5">{localStorage.getItem('NAME')?.substring(0, 2).toUpperCase()}</span>
+                <div className="navbar">
+      {/* Other navbar content */}
+      <span
+        className={`profile-initials ${isDropdownOpen ? 'active' : ''}`}
+        onClick={toggleDropdown}
+      >
+        {localStorage.getItem('NAME')?.substring(0, 2).toUpperCase()}
+      </span>
+      {isDropdownOpen && (
+        <div className="dropdown-content" style={{zIndex:'500'}}>
+          {/* Content of the dropdown */}
+
+          <span>USER : {localStorage.getItem('NAME')}</span>
+
+
+          <Link to='/ourbookings'>
+          <button className="mt-2 bg-transparent border-0">YOUR BOOKING</button>
+          </Link>
+
+          <NavDropdown.Item
+                    className="navBtn"
+                    style={{
+                      // width: "10rem",
+                      
+                      backgroundColor: "blue",
+                      color: "#fff",
+                      marginTop:'15px',
+                      padding:"3px"
+  
+                    }}
+
+                    onClick={()=>{
+                      localStorage.removeItem('USERID');
+                      localStorage.removeItem('TOKEN')
+                      navigate('/signin')
+                    }}
+                  >
+
+                      LOG OUT
+           </NavDropdown.Item>
+          
+        </div>
+      )}
+    </div>
                 
               </Offcanvas.Body>
               

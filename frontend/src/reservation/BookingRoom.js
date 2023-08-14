@@ -16,6 +16,8 @@ import './Booking.css';
 function BookingRoom() {
 
 
+  
+
 
   const [mm, setMM] = useState(data);
   const params = useParams();
@@ -81,6 +83,52 @@ function BookingRoom() {
       setChildren(children - 1);
     }
   }
+
+  
+  const userIds = localStorage.getItem('USERID');
+
+  const handleBookNow = () => {
+    const newBookingData = {
+      checkIn: selectedDate,
+      checkOut: selectedDate2,
+      adults: adults,
+      children: children,
+      roomType: mm1[0].heading,
+      totalPrice: Math.round(mm1[0].price * 118 / 100),
+      roomImagePath: mm1[0].imageSrc
+    };
+  
+    let storedBookingData = JSON.parse(localStorage.getItem(`bookingData${userIds}`));
+    
+    if (!storedBookingData) {
+      storedBookingData = []; // Initialize as an empty array if no data is stored yet
+    }
+  
+    // Ensure storedBookingData is an array before attempting to push
+    if (Array.isArray(storedBookingData)) {
+      storedBookingData.push(newBookingData);
+      localStorage.setItem(`bookingData${userIds}`, JSON.stringify(storedBookingData));
+    } else {
+      console.error('Invalid booking data found in localStorage:', storedBookingData);
+    }
+  }
+  
+  // Retrieving and logging all stored booking data
+  const storedBookingData = JSON.parse(localStorage.getItem(`bookingData${userIds}`));
+  if (Array.isArray(storedBookingData)) {
+    console.log('Stored Booking Data:', storedBookingData);
+  } else {
+    console.log('No valid booking data found in localStorage.');
+  }
+  
+
+  
+
+
+
+
+
+  // console.log(localStorage.getItem("bookingData" , ));
 
  
   
@@ -412,7 +460,7 @@ function BookingRoom() {
                    </table>
 
                   </div>
-                  <Link to="/bookingform"><Button>Book Now</Button></Link>
+                  <Link to="/bookingform"><Button onClick={handleBookNow}>Book Now</Button></Link>
                   </Col>
                 </Row>
                   

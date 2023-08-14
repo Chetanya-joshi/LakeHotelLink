@@ -1,4 +1,5 @@
 const user = require('../user');
+const jwt = require('jsonwebtoken');
 const UserModel = require('../user')
 
 module.exports.signup = (req, res) => {
@@ -35,12 +36,15 @@ module.exports.signin = (req, res) => {
     UserModel.findOne({email : req.body.email}).then(result =>{
         console.log(result , '11')
 
+        const token = jwt.sign({ userId: result._id }, 'your-secret-key', { expiresIn: '1h' });
+
+
         if(result.password !== req.body.password){
             res.send({code:404 , message:'password wrong'})
         }
 
         else{
-            res.send({ name : result.name ,email : result.email ,code :200 , message : 'User Found' , token:'hmmkk'})
+            res.send({ name : result.name , userId: result._id ,email : result.email , code :200 , message : 'User Found' , token})
         }
 
        
