@@ -41,4 +41,22 @@
     display: block;
     /* Adjust positioning and other styles as needed */
   }
+
+@media screen and (max-width:1000px){
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top:50%;
+      right:20%;
+      background-color: white;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      padding:15px;
+      width:200px;
+      height:auto;
+      text-align: center;
+      /* height:100vh; */
+    }
+    
+  }
   
